@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Route based Toll System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        #map-container {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Route based Toll System</h1>
+        <form id="routeForm">
+            <div class="form-group">
+                <label for="origin">Origin:</label>
+                <input type="text" class="form-control" id="origin" name="origin" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" class="form-control" id="destination" name="destination" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate Route</button>
+        </form>
+        <div id="result" class="mt-4"></div>
+        <div id="map-container" class="mt-4">
+            <iframe id="mapFrame" src="" frameborder="0" style="border:0; width:100%; height:100%;"></iframe>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#routeForm').submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/calculate',
+                    data: formData,
+                    success: function(response) {
+                        $('#result').html(response.result);
+                        var mapUrl = 'static/' + response.map_filename;
+                        $('#mapFrame').attr('src', mapUrl);
+                    },
+                    error: function(error) {
+                        $('#result').html('Error occurred: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
