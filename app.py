@@ -5,9 +5,9 @@ import route
 
 app = Flask(__name__, static_folder='static')
 
-API_KEY_OC = "4a5c67bb5b164ce8bcdd5603bd4bc348"
-API_KEY_ORS = "5b3ce3597851110001cf624883442da13b3f48ddb6c425cdcf81eeec"
-TOLLGURU_API_KEY = os.environ.get("TOLLGURU_API_KEY")
+API_KEY_OC = "API_KEY_OPENCAGE"
+API_KEY_ORS = "API_KEY_OPENROUTESERVICE"
+TOLLGURU_API_KEY = "API_KEY_TOLLGURU"
 
 @app.route('/')
 def index():
