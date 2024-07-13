@@ -6,8 +6,8 @@ import requests
 from datetime import datetime, timezone
 import os
 
-API_KEY_OC = "4a5c67bb5b164ce8bcdd5603bd4bc348"
-TOLLGURU_API_KEY = os.environ.get("TOLLGURU_API_KEY")
+API_KEY_OC = "API_KEY_OPENCAGE"
+TOLLGURU_API_KEY = "API_KEY_TOLLGURU"
 TOLLGURU_API_URL = "https://apis.tollguru.com/toll/v2"
 POLYLINE_ENDPOINT = "complete-polyline-from-mapping-service"
 
